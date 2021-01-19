@@ -1,0 +1,26 @@
+{
+  "name": "simple-blog-backend",
+  "version": "0.0.1",
+  "description": "",
+  "main": "server.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nailujx86/simple-blog.git"
+  },
+  "author": "Julian Blazek",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/nailujx86/simple-blog/issues"
+  },
+  "homepage": "https://github.com/nailujx86/simple-blog#readme",
+  "dependencies": {
+    "express": "^4.17.1"
+  },
+  "devDependencies": {
+    "jest": "^26.6.3",
+    "supertest": "^6.1.1"
+  }
+}
