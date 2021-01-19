@@ -7,17 +7,39 @@ on:
     branches: [ main ]
 
 jobs:
-  build:
+  build frontend:
+    defaults:
+      run:
+        working-directory: './app'
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: action/checkout@v2
+    - name: Setup Node
+      uses: actions/setup-node@v1
+      with:
+        node-version: '14.x'
+    - name: Install Packages
+      run:  npm ci
+    - name: Build Frontend
+      run:  npm run build
+    - name: Upload Build Artifact
+      uses: actions/upload-artifact@v2
+        name: frontend-dist
+        path: app/dist
+
+
+  build backend:
 
     runs-on: ubuntu-latest
 
     strategy:
       matrix:
-        node-version: [10.x, 12.x, 14.x, 15.x]
+        node-version: [14.x, 15.x]
 
     steps:
     - uses: actions/checkout@v2
-    - name: Build and Test using Node.js ${{ matrix.node-version }}
+    - name: Build using Node.js ${{ matrix.node-version }}
       uses: actions/setup-node@v1
       with:
         node-version: ${{ matrix.node-version }}
