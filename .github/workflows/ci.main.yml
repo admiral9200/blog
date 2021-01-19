@@ -7,7 +7,7 @@ on:
     branches: [ main ]
 
 jobs:
-  build frontend:
+  build_frontend:
     defaults:
       run:
         working-directory: './app'
@@ -30,7 +30,7 @@ jobs:
         path: app/dist
 
 
-  build backend:
+  build_backend:
 
     runs-on: ubuntu-latest
 
