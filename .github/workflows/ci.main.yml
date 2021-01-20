@@ -21,6 +21,8 @@ jobs:
         node-version: '14.x'
     - name: Install Packages
       run:  npm ci
+    - name: Run Unit Tests
+      run:  npm run test:unit
     - name: Build Frontend
       run:  npm run build
     - name: Upload Build Artifact
@@ -31,12 +33,11 @@ jobs:
 
 
   build_backend:
-
     runs-on: ubuntu-latest
 
     strategy:
       matrix:
-        node-version: [14.x, 15.x]
+        node-version: [12.x, 14.x]
 
     steps:
     - uses: actions/checkout@v2
