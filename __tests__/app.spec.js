@@ -11,6 +11,7 @@ describe('App', () => {
     test('"GET /keineRoute/" gibt HTTP Statuscode 404 zurück', async(done) => {
         const response = await request(app).get('/keineRoute/');
         expect(response.statusCode).toBe(404);
+        expect(response.body).toHaveProperty('success', false);
         done();
     });
 });
