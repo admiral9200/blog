@@ -4,7 +4,8 @@
   "description": "",
   "main": "server.js",
   "scripts": {
-    "test": "jest"
+    "start": "node server.js",
+    "test": "jest --verbose"
   },
   "repository": {
     "type": "git",
@@ -18,8 +19,11 @@
   "homepage": "https://github.com/nailujx86/simple-blog#readme",
   "dependencies": {
     "bcrypt": "^5.0.0",
+    "body-parser": "^1.19.0",
+    "cookie-session": "^1.4.0",
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
+    "express-validator": "^6.9.2",
     "mongoose": "^5.11.13"
   },
   "devDependencies": {
