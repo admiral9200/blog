@@ -62,8 +62,7 @@ jobs:
         name: frontend-dist
         path: app/dist
     - name: Tell Server to restart after Deployment
-      run: mkdir tmp
-      run: touch tmp/restart.txt
+      run: mkdir tmp && touch tmp/restart.txt
     - name: 🚀 Deploy!
       uses: SamKirkland/FTP-Deploy-Action@4.0.0
       with:
