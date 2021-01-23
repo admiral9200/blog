@@ -1,0 +1,41 @@
+:root.animate * {
+    transition: color, background-color .3s linear;
+}
+
+:root.dark body {
+    background-color: #2E3440;
+    color: #ECEFF4;
+}
+
+:root.dark .card {
+    background: #434C5E;
+}
+
+:root.dark .footer {
+    background-color: #3B4252;
+}
+
+:root.dark a,
+ :root.dark .b {
+    color: #81A1C1;
+}
+
+:root.dark hr {
+    border: 1px solid #81A1C1;
+}
+
+:root.dark .b.primary {
+    color: #fff;
+    background: #81A1C1;
+    border: solid 1px #81A1C1;
+}
+
+:root.dark input,
+ :root.dark select {
+    color: #fff;
+    background-color: #4C566A;
+}
+
+:root.dark code {
+    background: #4C566A;
+}
