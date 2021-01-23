@@ -45,12 +45,24 @@ describe('Register Route Integration', () => {
         done();
     });
 
-    test('Es können nicht zwei gleiche Nutzer registriert werden', async (done) => {
+    test('Es können nicht zwei gleiche Nutzernamen registriert werden', async (done) => {
         await request(app).post('/api/register').send(
             { username: 'Bernd', password: 'testpassw', confirmPassword: 'testpassw', email: 'test@test.de' }
         );
         const result = await request(app).post('/api/register').send(
-            { username: 'Bernd', password: 'testpassw', confirmPassword: 'testpassw', email: 'test@test.de' }
+            { username: 'Bernd', password: 'testpassw', confirmPassword: 'testpassw', email: 'test2@test.de' }
+        );
+        expect(result.statusCode).not.toBe(200);
+        expect(result.body).toHaveProperty('success', false)
+        done();
+    });
+
+    test('Es können nicht zwei gleiche E-Mail Adressen registriert werden', async (done) => {
+        await request(app).post('/api/register').send(
+            { username: 'Björn', password: 'testpassw', confirmPassword: 'testpassw', email: 'test4@test.de' }
+        );
+        const result = await request(app).post('/api/register').send(
+            { username: 'Hans', password: 'testpassw', confirmPassword: 'testpassw', email: 'test4@test.de' }
         );
         expect(result.statusCode).not.toBe(200);
         expect(result.body).toHaveProperty('success', false)

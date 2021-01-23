@@ -45,7 +45,11 @@ describe('User', () => {
             password: 'uniquepw2',
             email: 'uniquetest@test.de'
         })).rejects.toBeDefined();
-    })
+    });
+
+    test('Nicht vorhandene Nutzer können nicht authentifiziert werden', async() => {
+        expect(User.authenticate("gibtsnicht@test.de", "test")).rejects.toThrow("User not found");
+    });
 });
 
 afterAll(async () => {

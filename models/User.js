@@ -42,19 +42,17 @@ UserSchema.pre('save', function (next) {
 UserSchema.statics.authenticate = function (email, pass) {
     return new Promise((resolve, reject) => {
         User.findOne({ email: email }, (err, user) => {
-            if (err)
-                reject(err);
-            if (!user) {
-                let err = new Error('User not found..');
-                err.status = 401;
-                reject(err);
+            if (err || !user) {
+                let error = new Error('User not found');
+                error.status = 401;
+                return reject(error);
             }
             bcrypt.compare(pass, user.password, (err, result) => {
                 if (result === true)
                     resolve(user);
-                var error = new Error('Wrong password!');
+                var error = new Error('Wrong password');
                 error.status = 401;
-                reject(error);
+                return reject(error);
             });
         });
     });   
