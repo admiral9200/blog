@@ -4,29 +4,25 @@
       <router-link to="/">Home</router-link> |
       <router-link to="/about">About</router-link>
     </div>
-    <router-view/>
+    <div class="c">
+      <h1 class="center"><router-link to="/">{{ $route.name }}</router-link></h1>
+      <router-view/>
+    </div>
+    <br><br><br>
+    <footer class="full footer">
+      (c) 2021 Julian Blazek. <label for="toggle-theme">Change Theme:</label> <button class="b" id="toggle-theme" @click="changeTheme">🕑</button><br>
+      View the sourcecode on <a href="https://github.com/nailujx86/simple-blog" target="_blank" rel="noreferrer">Github</a>.
+    </footer>
   </div>
 </template>
 
-<style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
+<script>
+import {toggleTheme} from './assets/darkmode';
+export default {
+  methods: {
+    changeTheme() {
+      toggleTheme();
+    }
+  }
 }
-
-#nav {
-  padding: 30px;
-}
-
-#nav a {
-  font-weight: bold;
-  color: #2c3e50;
-}
-
-#nav a.router-link-exact-active {
-  color: #42b983;
-}
-</style>
+</script>
