@@ -5,6 +5,7 @@
       <router-link to="/about">About</router-link>
     </div>
     <div class="c">
+      <account/>
       <h1 class="center"><router-link to="/">{{ $route.name }}</router-link></h1>
       <router-view/>
     </div>
@@ -18,11 +19,15 @@
 
 <script>
 import {toggleTheme} from './assets/darkmode';
+import Account from '@/components/Account.vue';
 export default {
   methods: {
     changeTheme() {
       toggleTheme();
     }
+  },
+  components: {
+    Account
   }
 }
 </script>
