@@ -53,7 +53,7 @@ export default {
     methods: {
         register(e) {
             e.preventDefault();
-            axios.post('/api/register', this.$data)
+            axios.post('/api/register', this.$data, {withCredentials: true})
                 .then((response) => {
                     console.log("Registered");
                     this.$root.setLoggedIn(true);

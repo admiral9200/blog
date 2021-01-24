@@ -14,7 +14,7 @@ export default {
         },
         username: function() {
             if (this.$root.state.loggedIn) {
-                axios.get('/api/account')
+                axios.get('/api/account', {withCredentials: true},)
                 .then((response) => {
                     return response.data.username;
                 })
