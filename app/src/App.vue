@@ -1,9 +1,5 @@
 <template>
   <div id="app">
-    <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
-    </div>
     <div class="c">
       <account/>
       <h1 class="center"><router-link to="/">{{ $route.name }}</router-link></h1>

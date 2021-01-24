@@ -56,6 +56,7 @@ export default {
             axios.post('/api/register', this.$data)
                 .then((response) => {
                     console.log("Registered");
+                    this.$root.setLoggedIn(true);
                     router.push("/");
                 })
                 .catch((errors) => {
