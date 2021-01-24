@@ -5,7 +5,8 @@
   "main": "server.js",
   "scripts": {
     "start": "node server.js",
-    "test": "jest --verbose"
+    "test": "jest --verbose",
+    "clearDB": "node scripts/clearDatabase.js"
   },
   "repository": {
     "type": "git",
