@@ -1,20 +1,20 @@
 const store = {
     debug: true,
     state: {
-        uid: null,
+        loggedIn: false
     },
-    setUID(newValue) {
-        if (this.debug) console.log('setUID triggered with', newValue);
-        window.localStorage.setItem('uid', newValue);
-        this.state.uid = newValue;
+    setLoggedIn(newValue) {
+        if (this.debug) console.log('setLoggedIn triggered with', newValue);
+        window.localStorage.setItem('loggedIn', JSON.stringify(newValue));
+        this.state.loggedIn = newValue;
     },
-    clearUID() {
-        if (this.debug) console.log('clearUID triggered')
-        window.localStorage.removeItem('uid');
-        this.state.uid = null;
+    clearLoggedIn() {
+        if (this.debug) console.log('clearLoggedIn triggered')
+        window.localStorage.removeItem('loggedIn');
+        this.state.loggedIn = null;
     }
 }
 
-store.setUID(window.localStorage.getItem('uid') || null);
+store.setLoggedIn(JSON.parse(window.localStorage.getItem('loggedIn')) || null);
 
 export default store;
