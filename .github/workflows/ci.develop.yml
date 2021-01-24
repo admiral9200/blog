@@ -52,6 +52,7 @@ jobs:
 
   init_db:
     runs-on: ubuntu-latest
+    needs: ['build_backend', 'build_frontend']
     env:
       MONGO_URL: ${{ secrets.MONGO_URL_STAGING }}
     steps:
