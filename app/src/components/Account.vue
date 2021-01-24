@@ -30,7 +30,8 @@ export default {
         
     },
     methods: {
-        logout() {
+        async logout() {
+            await axios.get('/api/logout', {withCredentials: true});
             this.$root.clearLoggedIn();
             router.push("/");
         },
