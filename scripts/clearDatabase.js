@@ -5,7 +5,11 @@ mongoose.connect(process.env.MONGO_URL)
             .then(() => {
                 console.log("Database Initialization successful!")
                 process.exit(0);
-            });
+            })
+            .catch((err) => {
+                console.error(err);
+                process.exit(0);
+            })
     })
     .catch(err => {
         console.log("Database Initialization failed! :(")
