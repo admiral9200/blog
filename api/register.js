@@ -5,7 +5,7 @@ const User = require('../models/User')
 
 router.post('',
     body('email').isEmail().trim(),
-    body('username').isString(),
+    body('username').isString().trim(),
     body('password').isLength({ min: 8 })
         .custom((value, { req, loc, path }) => {
             if (value !== req.body.confirmPassword) {
