@@ -59,8 +59,8 @@ describe('Register Route Integration', () => {
         const get = await request(app).post('/api/login').send(
             { password: 'signpassword4', email: 'signtest2@test.de' }
         );
-        expect(get.statusCode).toBe(200);
-        expect(get.body).toHaveProperty('success', true)
+        expect(get.statusCode).not.toBe(200);
+        expect(get.body).toHaveProperty('success', false)
         done();
     });
 
