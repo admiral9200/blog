@@ -1,7 +1,7 @@
 <template>
   <div class="card gimme_space">
     <div class="c">
-      <form v-on:submit="register">
+      <form @submit.prevent="register">
         <input
           class="full"
           type="text"
@@ -37,32 +37,32 @@
 </template>
 
 <script>
-import router from '../router';
-import axios from 'axios';
+import router from "../router";
+import axios from "axios";
 
 export default {
-    name: 'Register',
-    data() {
-        return {
-            username: '',
-            email: '',
-            password: '',
-            confirmPassword: ''
-        }
+  name: "Register",
+  data() {
+    return {
+      username: "",
+      email: "",
+      password: "",
+      confirmPassword: "",
+    };
+  },
+  methods: {
+    register() {
+      axios
+        .post("/api/register", this.$data, { withCredentials: true })
+        .then((response) => {
+          console.log("Registered");
+          this.$globals.setLoggedIn(true);
+          router.push("/");
+        })
+        .catch((errors) => {
+          console.log(errors.response.data);
+        });
     },
-    methods: {
-        register(e) {
-            e.preventDefault();
-            axios.post('/api/register', this.$data, {withCredentials: true})
-                .then((response) => {
-                    console.log("Registered");
-                    this.$root.setLoggedIn(true);
-                    router.push("/");
-                })
-                .catch((errors) => {
-                    console.log(errors.response.data);
-                });
-        }
-    }
-}
+  },
+};
 </script>
