@@ -13,6 +13,20 @@
         "console": "integratedTerminal",
         "internalConsoleOptions": "neverOpen",
         "port": 9229
+      },
+      {
+        "name": "Debug Vue Tests",
+        "type": "node",
+        "cwd": "${workspaceFolder}/app",
+        "request": "launch",
+        "runtimeArgs": [
+          "--inspect-brk",
+          "${cwd}/node_modules/jest/bin/jest.js",
+          "--runInBand"
+        ],
+        "console": "integratedTerminal",
+        "internalConsoleOptions": "neverOpen",
+        "port": 9229
       }
     ]
 }
