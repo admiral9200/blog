@@ -1,40 +1,55 @@
 <template>
-    <span v-if="loggedIn" class="acc">Welcome {{ username }}!<br><a href="/account">Account</a>/<a @click.prevent="logout">Logout</a></span>
-    <span v-else class="acc"><router-link to="/login">Login</router-link>/<router-link to="/register">Register</router-link></span>
+  <span v-if="loggedIn" class="acc"
+    >Welcome {{ username }}!<br /><a href="/account">Account</a>/<a ref="logout"
+      @click.prevent="logout"
+      >Logout</a
+    ></span
+  >
+  <span v-else class="acc"
+    ><router-link to="/login">Login</router-link>/<router-link to="/register"
+      >Register</router-link
+    ></span
+  >
 </template>
 
 <script>
-import axios from 'axios';
-import router from '../router';
+import axios from "axios";
+import router from "../router";
 
 export default {
-    computed: {
-        loggedIn: function() {
-            return this.$root.state.loggedIn == true;
-        },
-        username: function() {
-            if (this.$root.state.loggedIn) {
-                axios.get('/api/account', {withCredentials: true},)
-                .then((response) => {
-                    return response.data.username;
-                })
-                .catch((errors) => {
-                    console.log(errors.response.data);
-                    return null;
-                });
-            }
-            return null;
-        }
+  data() {
+    return {
+      username: "",
+    };
+  },
+  watch: {
+    async loggedIn() {
+      await this.updateAccountDetails();
     },
-    created() {
-        
+  },
+  async created() {
+    await this.updateAccountDetails();
+  },
+  computed: {
+    loggedIn: function () {
+      return this.$globals.loggedIn
     },
-    methods: {
-        async logout() {
-            await axios.get('/api/logout', {withCredentials: true});
-            this.$root.clearLoggedIn();
-            router.push("/");
-        },
+  },
+  methods: {
+    async logout() {
+      this.$globals.setLoggedIn(false);
+      await axios.get("/api/logout", { withCredentials: true });
+      router.push("/");
     },
-}
+    async updateAccountDetails() {
+      if(this.loggedIn) {
+      var result = await axios.get("/api/account", {
+        withCredentials: true,
+      });
+      this.username = result.data.username;
+      } else {
+      }
+    },
+  },
+};
 </script>
