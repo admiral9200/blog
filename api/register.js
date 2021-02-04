@@ -57,10 +57,4 @@ router.post('',
         });
     });
 
-router.all('', (req, res, next) => {
-    let err = new Error('Method Not Allowed');
-    err.status = 405
-    next(err);
-});
-
 module.exports = router;
