@@ -2,19 +2,23 @@
   <div class="card gimme_space">
     <div class="c">
       <form @submit.prevent="login">
+        <label for="email">E-Mail</label><br />
         <input
           class="full"
           type="email"
-          name="email"
+          id="email"
           placeholder="Email"
           v-model="email"
+          autocomplete="email"
         /><br />
+        <label for="password">Password</label><br />
         <input
           class="full"
           type="password"
-          name="password"
+          id="password"
           placeholder="Password"
           v-model="password"
+          autocomplete="current-password"
         /><br />
         <button type="submit" class="b primary">Login</button>
       </form>

@@ -2,33 +2,41 @@
   <div class="card gimme_space">
     <div class="c">
       <form @submit.prevent="register">
+        <label for="username">Username</label><br />
         <input
           class="full"
           type="text"
-          name="username"
+          id="username"
           placeholder="Username"
           v-model="username"
+          autocomplete="none"
         /><br />
+        <label for="email">Email</label><br />
         <input
           class="full"
           type="email"
-          name="email"
+          id="email"
           placeholder="Email"
           v-model="email"
+          autocomplete="email"
         /><br />
+        <label for="password">Password</label><br />
         <input
           class="full"
           type="password"
-          name="password"
+          id="password"
           placeholder="Password"
           v-model="password"
+          autocomplete="new-password"
         /><br />
+        <label for="passwordConf">Confirm Password</label><br />
         <input
           class="full"
           type="password"
-          name="passwordConf"
+          id="passwordConf"
           placeholder="Confirm Password"
           v-model="confirmPassword"
+          autocomplete="new-password"
         /><br />
         <button type="submit" class="b primary">Register</button>
       </form>
