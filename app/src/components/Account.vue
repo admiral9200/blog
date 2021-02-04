@@ -43,11 +43,16 @@ export default {
     },
     async updateAccountDetails() {
       if(this.loggedIn) {
-      var result = await axios.get("/api/account", {
-        withCredentials: true,
-      });
-      this.username = result.data.username;
+        try {
+          var result = await axios.get("/api/account", {
+            withCredentials: true,
+          });
+          this.username = result.data.data.username;
+        } catch(e) {
+          this.loggedIn = false;
+        }
       } else {
+        this.username = "";
       }
     },
   },
