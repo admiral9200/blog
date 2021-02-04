@@ -37,11 +37,12 @@ if (!localStorage.getItem('theme')) {
     currentTheme = localStorage.getItem('theme');
 }
 
-setTheme(currentTheme);
-
 window.addEventListener("load", function () {
     refreshToggleButton();
     document.documentElement.classList.add("animate");
 });
 
 exports.toggleTheme = toggleTheme;
+exports.setTheme = function(color) {
+    setTheme(color || currentTheme)
+};

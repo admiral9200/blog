@@ -5,7 +5,7 @@
       <h1 class="center">
         <router-link to="/">{{ $route.name }}</router-link>
       </h1>
-      <transition-group mode="out-in" name="fade">
+      <transition-group name="fade">
         <notification
           v-for="notification in $globals.activeNotifications"
           :key="notification.id"
