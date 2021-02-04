@@ -6,7 +6,7 @@ import axios from 'axios';
 
 jest.mock('axios');
 
-axios.get.mockResolvedValue({data: {username: 'Mark'}})
+axios.get.mockResolvedValue({data: {data: {username: 'Mark'}}})
 
 describe('Account.vue', () => {
     test('Ist ein Nutzer angemeldet, so wird dieser begrüßt', async () => {
