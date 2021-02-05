@@ -37,6 +37,7 @@
 import { toggleTheme } from "./assets/darkmode";
 import Account from "@/components/Account.vue";
 import Notification from "@/components/Notification.vue";
+import router from './router';
 
 export default {
   methods: {
@@ -46,15 +47,28 @@ export default {
   },
   components: {
     Account,
-    Notification,
+    Notification
   },
+  created() {
+    this.$http.interceptors.response.use(
+      null,
+      err => {
+        if (err.response.status === 401) {
+          this.$globals.setLoggedIn(false);
+          this.$globals.addNotification("There was an authentication error. We logged you out and redirected you to the login page. :)", "error", 10000);
+          router.push('/login')
+        }
+        throw err;
+      }
+    );
+  }
 };
 </script>
 
 <style>
 .fade-enter-active,
 .fade-leave-active {
-  transition-duration: 0.8s;
+  transition-duration: .2s;
   transition-property: opacity;
   transition-timing-function: ease;
 }
@@ -71,7 +85,7 @@ export default {
   opacity: 0;
 }
 .notification-enter-active {
-  transition-delay: .2s;
+  transition-delay: .4s;
 }
 
 </style>
