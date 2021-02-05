@@ -13,6 +13,7 @@ describe('Account.vue', () => {
         const store = require('@/store').globalStore;
         let localVue = createLocalVue();
         localVue.prototype.$globals = store;
+        localVue.prototype.$http = axios;
         const wrapper = mount(Account, {
             localVue,
             stubs: {
@@ -29,6 +30,7 @@ describe('Account.vue', () => {
         const store = require('@/store').globalStore;
         let localVue = createLocalVue();
         localVue.prototype.$globals = store;
+        localVue.prototype.$http = store;
         const wrapper = mount(Account, {
             localVue,
             stubs: {
@@ -44,6 +46,7 @@ describe('Account.vue', () => {
         const store = require('@/store').globalStore;
         let localVue = createLocalVue();
         localVue.prototype.$globals = store;
+        localVue.prototype.$http = axios;
         const wrapper = mount(Account, {
             localVue,
             stubs: {
