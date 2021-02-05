@@ -11,7 +11,7 @@ router.get('', (req, res) => {
     })
     .catch(err => {
         let error = new Error("Something went wrong..");
-        errror.status = 500;
+        error.status = 500;
         return next(error);
     })
 });
