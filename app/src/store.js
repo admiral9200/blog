@@ -4,7 +4,8 @@ export var globalStore = new Vue({
     data() {
         return {
             loggedIn: false,
-            notificationStorage: []
+            notificationStorage: [],
+            username: ""
         }
     },
     created() {
@@ -19,6 +20,9 @@ export var globalStore = new Vue({
         setLoggedIn(state) {
             window.localStorage.setItem('loggedIn', JSON.stringify(state))
             this.loggedIn = state;
+        },
+        setUsername(username) {
+            this.username = username;
         },
         addNotification(message, status, timeout) {
             var notificationObj = { message, status, active: true, id: Math.random() };

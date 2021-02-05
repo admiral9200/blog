@@ -13,15 +13,9 @@
 </template>
 
 <script>
-import axios from "axios";
 import router from "../router";
 
 export default {
-  data() {
-    return {
-      username: "",
-    };
-  },
   watch: {
     async loggedIn() {
       await this.updateAccountDetails();
@@ -34,25 +28,26 @@ export default {
     loggedIn: function () {
       return this.$globals.loggedIn
     },
+    username: function() {
+      return this.$globals.username
+    }
   },
   methods: {
     async logout() {
       this.$globals.setLoggedIn(false);
-      await axios.get("/api/logout", { withCredentials: true });
+      await this.$http.get("/api/logout", { withCredentials: true });
       router.push("/");
     },
     async updateAccountDetails() {
       if(this.loggedIn) {
         try {
-          var result = await axios.get("/api/account", {
+          var result = await this.$http.get("/api/account", {
             withCredentials: true,
           });
-          this.username = result.data.data.username;
+          this.$globals.setUsername(result.data.data.username);
         } catch(e) {
-          this.loggedIn = false;
+          
         }
-      } else {
-        this.username = "";
       }
     },
   },
