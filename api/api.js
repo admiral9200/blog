@@ -10,6 +10,7 @@ router.use('/register', require('./register'));
 router.use('/login', require('./login'));
 router.use('/logout', require('./logout'));
 router.use('/account', authMiddleware, require('./account'));
+router.use('/post', require('./post'));
 
 router.use(require('./middleware/catchMethods'));
 
