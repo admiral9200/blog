@@ -43,12 +43,12 @@ export default {
       axios
         .post("/api/login", this.$data, { withCredentials: true })
         .then((response) => {
-          console.log("Signed In");
+          this.$globals.addNotification("Signed in!", "success", 5000);
           this.$globals.setLoggedIn(true);
-          router.push("/");
+          router.replace("/");
         })
         .catch((errors) => {
-          console.log(errors.response.data);
+          this.$globals.addNotification(`We couldn't sign you in. Check your login data and try again! Error: ${errors.response.data.message}`, "error", 5000);
         });
     },
   },
