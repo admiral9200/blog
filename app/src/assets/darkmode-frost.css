@@ -32,7 +32,8 @@
 }
 
 :root.dark input,
- :root.dark select {
+:root.dark select,
+:root.dark textarea {
     color: #fff;
     background-color: #4C566A;
 }
