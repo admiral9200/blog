@@ -1,6 +1,6 @@
 <template>
   <span v-if="loggedIn" class="acc"
-    >Welcome {{ username }}!<br /><a href="/account">Account</a>/<a ref="logout"
+    >Welcome {{ username }}!<br /><router-link to="/account">Account</router-link>/<a ref="logout"
       @click.prevent="logout"
       >Logout</a
     ></span
@@ -36,6 +36,7 @@ export default {
     async logout() {
       this.$globals.setLoggedIn(false);
       await this.$http.get("/api/logout", { withCredentials: true });
+      this.$globals.addNotification("Logged out!", "success", 5000);
       router.push("/");
     },
     async updateAccountDetails() {
