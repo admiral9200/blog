@@ -4,8 +4,8 @@ const { body, validationResult } = require('express-validator');
 const User = require('../models/User');
 
 router.post('',
-    body('email').isEmail().trim(),
-    body('password').isString(),
+    body('email').isEmail().normalizeEmail(),
+    body('password').isString().isLength({min: 8}),
     (req, res, next) => {
         const errors = validationResult(req);
         if (!errors.isEmpty()) {

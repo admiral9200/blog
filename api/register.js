@@ -4,7 +4,7 @@ const { body, validationResult } = require('express-validator');
 const User = require('../models/User')
 
 router.post('',
-    body('email').isEmail().trim(),
+    body('email').isEmail().normalizeEmail(),
     body('username').isString().trim(),
     body('password').isLength({ min: 8 })
         .custom((value, { req, loc, path }) => {
