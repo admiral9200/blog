@@ -4,8 +4,8 @@ const { body, validationResult } = require('express-validator');
 const User = require('../models/User')
 
 router.post('',
-    body('email').isEmail().trim(),
-    body('username').isString(),
+    body('email').isEmail().normalizeEmail(),
+    body('username').isString().trim(),
     body('password').isLength({ min: 8 })
         .custom((value, { req, loc, path }) => {
             if (value !== req.body.confirmPassword) {
@@ -56,11 +56,5 @@ router.post('',
             });
         });
     });
-
-router.all('', (req, res, next) => {
-    let err = new Error('Method Not Allowed');
-    err.status = 405
-    next(err);
-});
 
 module.exports = router;

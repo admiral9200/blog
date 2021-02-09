@@ -5,20 +5,21 @@
   "main": "server.js",
   "scripts": {
     "start": "node server.js",
-    "test": "jest --verbose"
+    "test": "jest --verbose",
+    "clearDB": "node scripts/clearDatabase.js"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/nailujx86/simple-blog.git"
   },
   "author": "Julian Blazek",
-  "license": "ISC",
+  "license": "MIT",
   "bugs": {
     "url": "https://github.com/nailujx86/simple-blog/issues"
   },
   "homepage": "https://github.com/nailujx86/simple-blog#readme",
   "dependencies": {
-    "bcrypt": "^5.0.0",
+    "bcryptjs": "^2.4.3",
     "body-parser": "^1.19.0",
     "cookie-session": "^1.4.0",
     "dotenv": "^8.2.0",

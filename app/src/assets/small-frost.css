@@ -1,0 +1,129 @@
+@import url('https://fonts.googleapis.com/css?family=Raleway');
+html {
+    height: 100%;
+}
+body {
+    background-color: #E5E9F0;
+    font-family: Raleway, Arial, Helvetica, sans-serif;
+    position: relative;
+    margin: 0;
+    min-height: 100%;
+    color: #2E3440
+}
+*,*+* {
+    box-sizing: border-box;
+}
+h1,h2,h3,h4,h5,h6 {
+    margin: 10px 0;
+}
+.c {
+    margin: auto;
+    padding: 1.5em;
+    max-width: 80em;
+}
+.r {
+    margin: 0.4em 0;
+    display: table;
+    table-layout: fixed;
+}
+.full, .r {
+    width: 100%;
+}
+.i {
+    margin: 1.5em 0;
+}
+table {
+    display: block;
+    overflow: auto;
+}
+@media (min-width: 769px){
+    table {
+        display: table;
+    }
+    .r{
+        border-spacing: 1.5em 0;
+    }
+    .i{
+        display: table-cell;
+        height: 100%;
+        vertical-align: top;
+    }
+    [class ~= "1"]{
+        width: 8.33%;
+    }
+    [class ~= "2"]{
+        width: 16.66%;
+    }
+    [class ~= "3"]{
+        width: 25%;
+    }
+    [class ~= "4"]{
+        width: 33.33%;
+    }
+    [class ~= "5"]{
+        width: 41.66%;
+    }
+}
+a:hover,.b:hover {
+	opacity: .7;
+}
+a {
+    color: #5E81AC;
+    text-decoration: none;
+}
+a.b {
+    font-size: 0.8em;
+}
+.b.primary {
+    color: white;
+    background: #3B4252;
+    border: solid 1px #3B4252;
+}
+.b {
+    color: #3B4252;
+    display: inline-block;
+    padding: 0.8em;
+    background: transparent;
+    border: solid 1px;
+    font-size: 0.8em;
+    cursor: pointer;
+    border-radius: 2px;
+}
+td, th {
+    padding: 0.5em;
+    text-align: left;
+    border-bottom: solid #4C566A;
+}
+hr {
+    border: 1px solid #3B4252;
+}
+.card {
+    background: #ECEFF4;
+    border-radius: 2px;
+    box-shadow: 0 4px 10px 0 rgba(0,0,0,0.2), 0 4px 20px 0 rgba(0,0,0,0.2);
+}
+input, textarea {
+    border: 1px solid #E5E9F0;
+    padding: .4em;
+}
+.card img {
+    vertical-align: middle;
+    width: 100%;
+}
+pre {
+    overflow: auto;
+    font-family: "Courier New", Courier, monospace;
+    border: 0 solid;
+    border-left-width: 2px;
+    padding-left: 1em;
+}
+.center {
+    text-align: center;
+    vertical-align: middle;
+}
+.i>br {
+    font-size: 1.5em;
+}
+code {
+    background: #D8DEE9;
+}

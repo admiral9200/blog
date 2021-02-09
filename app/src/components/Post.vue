@@ -1,0 +1,44 @@
+<template>
+    <div class="card" v-if="post">
+        <div class="darken_img" v-if="post.imageurl">
+            <img :src="post.imageurl" class="card_img" alt="Post Image" />
+            <div class="text_img">
+                <h1>
+                    {{ post.title }}
+                </h1>
+                <span class="opacity"
+                    >{{ readableDate }} by {{ post.user.username }}</span
+                >
+            </div>
+        </div>
+        <div v-else>
+            <div class="c">
+                <h1>{{ post.title }}</h1>
+                <span class="opacity"
+                    >{{ readableDate }} by {{ post.user.username }}</span
+                >
+            </div>
+            <hr />
+        </div>
+        <div class="c" v-html="compiledPost"></div>
+    </div>
+</template>
+
+<script>
+const marked = require("marked");
+
+export default {
+    props: ["post"],
+    computed: {
+        compiledPost: function () {
+            return marked(this.post.content);
+        },
+        readableDate: function() {
+            return this.post.created.toLocaleDateString('de-DE')
+        }
+    },
+};
+</script>
+
+<style>
+</style>
