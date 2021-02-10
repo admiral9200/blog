@@ -61,7 +61,7 @@ router.put(':id', authMiddleware,
                 post.lastUpdated = new Date();
 
                 post.save();
-                return res.json({success: true, message: 'Post updated!'})
+                return res.json({ success: true, message: 'Post updated!' })
             })
             .catch((error) => {
                 let err = new Error("This resource has not been found!");
@@ -70,6 +70,24 @@ router.put(':id', authMiddleware,
             });
     });
 
-//router.get()
+router.get('/:id', (req, res, next) => {
+    Post.findById(req.params['id']).populate('user', 'username')
+        .then(post => {
+            return res.json({ success: true, data: post });
+        })
+        .catch(error => {
+            let err = new Error("This resource has not been found!");
+            err.status = 404;
+            return next(err);
+        })
+});
+
+router.get('', (req, res, next) => {
+    let page = req.query['page'] || 1;
+    Post.find({}, null, { sort: { created: -1 }, skip: (page - 1) * 10, limit: 10 }).populate('user', 'username')
+        .then(posts => {
+            return res.json({ success: true, data: posts })
+        })
+});
 
 module.exports = router;

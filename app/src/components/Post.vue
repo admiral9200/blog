@@ -1,12 +1,12 @@
 <template>
-    <div class="card" v-if="post">
+    <article class="card" v-if="post">
         <div class="darken_img" v-if="post.imageurl">
             <img :src="post.imageurl" class="card_img" alt="Post Image" />
             <div class="text_img">
                 <h1>
                     {{ post.title }}
                 </h1>
-                <span class="opacity"
+                <span class="washed"
                     >{{ readableDate }} by {{ post.user.username }}</span
                 >
             </div>
@@ -14,14 +14,14 @@
         <div v-else>
             <div class="c">
                 <h1>{{ post.title }}</h1>
-                <span class="opacity"
+                <span class="washed"
                     >{{ readableDate }} by {{ post.user.username }}</span
                 >
             </div>
             <hr />
         </div>
         <div class="c" v-html="compiledPost"></div>
-    </div>
+    </article>
 </template>
 
 <script>
