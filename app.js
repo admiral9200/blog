@@ -4,7 +4,7 @@ var session = require('cookie-session')
 const mongoose = require('mongoose');
 
 if(process.env.NODE_ENV != 'test') {
-    mongoose.connect(process.env.MONGO_URL, {useNewUrlParser: true, useUnifiedTopology: true, useCreateIndex: true})
+    mongoose.connect(process.env.MONGO_URL, {useNewUrlParser: true, useUnifiedTopology: true, useCreateIndex: true, authSource: "admin"})
     .then(success => console.log('Database connected!'))
     .catch(err => console.log(err));
 }

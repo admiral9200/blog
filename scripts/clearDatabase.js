@@ -5,7 +5,7 @@ const Post = require('../models/Post');
 
 (async () => {
     try {
-        await mongoose.connect(process.env.MONGO_URL);
+        await mongoose.connect(process.env.MONGO_URL, {useNewUrlParser: true, useUnifiedTopology: true, useCreateIndex: true, authSource: "admin"});
         await Promise.allSettled([
             User.collection.drop(),
             Post.collection.drop()]);
