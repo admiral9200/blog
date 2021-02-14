@@ -2,7 +2,7 @@
     <div class="post">
         <post v-if="post" class="gimme_space" :post="post" />
         <br>
-        <button class="b primary" @click.prevent="goBack">Go back</button>
+        <button v-if="post" class="b primary" @click.prevent="goBack">Go back</button>
     </div>
 </template>
 
@@ -34,6 +34,7 @@ export default {
                     "error",
                     5000
                 );
+                router.back();
             });
     },
     methods: {
