@@ -26,7 +26,6 @@ describe('Post Route Integration Test', () => {
 
     test('Posts können nur von angemeldeten Benutzern erstellt werden', async () => {
         const app = require('../../app');
-        console.log((await request(app).get('/api/account')).body)
         let res = await request(app).post('/api/post').send({
             title: 'Post',
             content: 'PostContent',
@@ -102,5 +101,10 @@ describe('Post Route Integration Test', () => {
         let deleteCheck = await request(app2).get(`/api/post/${post._id}`);
         expect(deleteCheck.statusCode).not.toBe(200);
         done();
+    });
+
+    afterAll(async () => {
+        await mongoose.disconnect();
+        await mongoServer.stop();
     });
 });

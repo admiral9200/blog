@@ -36,6 +36,7 @@
     "testPathIgnorePatterns": [
       "/app/"
     ],
-    "testEnvironment": "node"
+    "testEnvironment": "node",
+    "testTimeout": 10000
   }
 }
