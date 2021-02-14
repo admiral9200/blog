@@ -3,6 +3,8 @@ import VueRouter from 'vue-router'
 import Home from '../views/Home.vue'
 
 import Compose from '@/views/Compose.vue'
+import Edit from '@/views/Edit.vue'
+
 import { globalStore } from '@/store'
 Vue.use(VueRouter)
 
@@ -35,7 +37,26 @@ const routes = [
     path: '/compose',
     name: 'Create Post',
     component: Compose,
-    beforeEnter: mustBeAuthenticated
+    beforeEnter: mustBeAuthenticated,
+  },
+  {
+    path: '/edit/:id',
+    name: 'Edit Post',
+    component: Edit,
+    beforeEnter: mustBeAuthenticated,
+    props: true
+  },
+  {
+    path: '/account',
+    name: 'Your Account',
+    beforeEnter: mustBeAuthenticated,
+    component: () => import(/* webpackChunkName: "account" */ '../views/Account.vue')
+  },
+  {
+    path: '/account/:username',
+    name: 'Account',
+    component: () => import(/* webpackChunkName: "account" */ '../views/Account.vue'),
+    props: true
   },
   {
     path: '/post/:id',
