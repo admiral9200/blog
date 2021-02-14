@@ -3,7 +3,7 @@
     <div class="c">
       <account />
       <h1 class="center">
-        <router-link to="/">{{ $route.name }}</router-link>
+        <router-link to="/" id="home-link">{{ $route.name }}</router-link>
       </h1>
       <transition-group name="fade">
         <notification
