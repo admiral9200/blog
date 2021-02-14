@@ -7,7 +7,7 @@
                     {{ post.title }}
                 </h1>
                 <span class="washed"
-                    >{{ readableDate }} by {{ post.user.username }}</span
+                    ref="date">{{ readableDate }} by {{ post.user.username }}</span
                 >
             </div>
         </div>
@@ -15,12 +15,12 @@
             <div class="c">
                 <h1>{{ post.title }}</h1>
                 <span class="washed"
-                    >{{ readableDate }} by {{ post.user.username }}</span
+                    ref="date">{{ readableDate }} by {{ post.user.username }}</span
                 >
             </div>
             <hr />
         </div>
-        <div class="c" v-html="compiledPost"></div>
+        <div ref="content" class="c" v-html="compiledPost"></div>
     </article>
 </template>
 
@@ -28,7 +28,7 @@
 const marked = require("marked");
 
 export default {
-    props: ["post"],
+    props: ['post'],
     computed: {
         compiledPost: function () {
             return marked(this.post.content);

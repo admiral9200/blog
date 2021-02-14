@@ -1,6 +1,6 @@
 <template>
     <div class="post">
-        <post class="gimme_space" :post="post" />
+        <post v-if="post" class="gimme_space" :post="post" />
         <br>
         <button class="b primary" @click.prevent="goBack">Go back</button>
     </div>
@@ -13,7 +13,7 @@ import router from "../router";
 export default {
     data() {
         return {
-            post: {},
+            post: undefined,
         };
     },
     components: {
