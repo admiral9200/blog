@@ -28,12 +28,6 @@ describe('Register Route Integration', () => {
     beforeAll(async () => {
         mongoServer = new MongoMemoryServer();
         await mongoose.connect(await mongoServer.getUri(), { useNewUrlParser: true, useUnifiedTopology: true, useCreateIndex: true });
-
-        app.set('sessionMiddleware', (req, res, next) => {
-            req.session = {};
-            req.session.userId = "";
-            next();
-        });
     });
 
     test('Nutzer können angemeldet werden', async (done) => {
