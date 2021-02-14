@@ -1,6 +1,5 @@
 const express = require('express');
 const router = express.Router();
-const authMiddleware = require('./middleware/checkAuthenticated');
 
 router.get('/', (req, res) => {
     res.json({success: true, message: 'Welcome to the simple-blog API'});
@@ -9,7 +8,7 @@ router.get('/', (req, res) => {
 router.use('/register', require('./register'));
 router.use('/login', require('./login'));
 router.use('/logout', require('./logout'));
-router.use('/account', authMiddleware, require('./account'));
+router.use('/account', require('./account'));
 router.use('/post', require('./post'));
 
 router.use(require('./middleware/catchMethods'));
