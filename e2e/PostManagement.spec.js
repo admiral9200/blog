@@ -32,11 +32,12 @@ test('Nutzer kann sich registrieren, einen Post erstellen und diesen auch wieder
     await page.press("#content", "Tab");
     await page.fill("#summary", "A Post about the unspoken Rules of Software Deployment");
     await page.click("button:text('Post')");
-    await page.waitForTimeout(200);
+    await page.waitForTimeout(300);
+    await page.waitForLoadState('networkidle');
     await page.click("text=Account");
-    await page.waitForLoadState('load');
     await page.click("text=Delete");
     await page.click(".danger");
     await page.waitForTimeout(300);
+    await page.waitForLoadState('networkidle');
     await expect(page).toHaveText('.card div', 'empty');
 }, 100000)
