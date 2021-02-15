@@ -36,7 +36,7 @@ describe('Post Route Integration Test', () => {
         expect(res.statusCode).toBe(401);
     });
 
-    test('Bei fehlenden Daten kann ein Post nicht erstellt werden', async () => {
+    test('Bei fehlenden Daten kann ein Post nicht erstellt werden', async (done) => {
         const app2 = require('../../app');
         let user = await User.create({
             username: 'MissingTest',
@@ -53,9 +53,10 @@ describe('Post Route Integration Test', () => {
         });
         expect(get.statusCode).not.toBe(200);
         expect(get.body['errors'].length).toBeGreaterThan(0);
+        done();
     });
 
-    test('Posts können von angemeldeten Benutzern erstellt werden', async () => {
+    test('Posts können von angemeldeten Benutzern erstellt werden', async (done) => {
         const app2 = require('../../app');
         let user = await User.create({
             username: 'UserTest',
@@ -74,6 +75,7 @@ describe('Post Route Integration Test', () => {
             imageurl: ''
         });
         expect(res.body['success']).toBe(true);
+        done();
     });
 
     test('Posts können von ihren Erstellern wieder gelöscht werden', async (done) => {

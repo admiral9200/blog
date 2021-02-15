@@ -26,7 +26,7 @@ describe('Account Route Integration', () => {
         });
     });
 
-    test('Nutzerdetails können über die Schnittstelle abgefragt werden', async () => {
+    test('Nutzerdetails können über die Schnittstelle abgefragt werden', async (done) => {
         await User.create({
             username: 'UserTest',
             password: 'userpassword',
@@ -36,9 +36,10 @@ describe('Account Route Integration', () => {
         const res = await request(app).get('/api/account/UserTest');
         expect(res.body).toHaveProperty('success', true);
         expect(res.body.data.username).toBe('UserTest');
+        done();
     });
 
-    test('Eine Liste der Posts des Nutzers können über die Schnittstelle abgefragt werden', async () => {
+    test('Eine Liste der Posts des Nutzers können über die Schnittstelle abgefragt werden', async (done) => {
         let user = await User.create({
             username: 'PostTest',
             password: 'postpassword',
@@ -62,5 +63,6 @@ describe('Account Route Integration', () => {
         const res = await request(app).get('/api/account/PostTest/posts');
         expect(res.body['data'].length).toBe(2);
         expect(res.body['data'][0].title).toBe('SecondPostTitle');
+        done();
     });
 });
