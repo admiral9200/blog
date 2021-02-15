@@ -101,6 +101,7 @@ hr {
     background: #ECEFF4;
     border-radius: 2px;
     box-shadow: 0 4px 10px 0 rgba(0,0,0,0.2), 0 4px 20px 0 rgba(0,0,0,0.2);
+    overflow: hidden;
 }
 input, textarea {
     border: 1px solid #E5E9F0;

@@ -84,10 +84,25 @@ jobs:
       uses: SamKirkland/FTP-Deploy-Action@4.0.0
       with:
         server: ftp.nailuj.net
-        username: git
+        username: blog
         password: ${{ secrets.FTP_PASSWORD }}
         server-dir: ./staging/
         exclude: .git* 
           - .git*/**
           - node_modules/**
           - node_modules/**/*
+
+  e2e:
+    runs-on: ubuntu-latest
+    needs: ['deploy_app']
+
+    steps:
+    - name: Download current commit
+      uses: actions/checkout@v2
+    - name: Setup playwright
+      uses: microsoft/playwright-github-action@v1
+    - name: Install Packages
+      run:  npm ci
+    - name: 🧪 Run end-to-end tests
+      run:  npm run test:e2e
+

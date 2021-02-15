@@ -6,6 +6,7 @@
   "scripts": {
     "start": "node server.js",
     "test": "jest --verbose",
+    "test:e2e": "jest --verbose -c jest.e2e.config.js",
     "clearDB": "node scripts/clearDatabase.js"
   },
   "repository": {
@@ -29,13 +30,18 @@
   },
   "devDependencies": {
     "jest": "^26.6.3",
+    "jest-playwright-preset": "^1.4.5",
     "mongodb-memory-server": "^6.9.3",
+    "playwright": "^1.8.1",
     "supertest": "^6.1.1"
   },
   "jest": {
     "testPathIgnorePatterns": [
-      "/app/"
+      "/app/",
+      "e2e"
     ],
-    "testEnvironment": "node"
+    "testEnvironment": "node",
+    "testTimeout": 10000,
+    "forceExit": true
   }
 }
