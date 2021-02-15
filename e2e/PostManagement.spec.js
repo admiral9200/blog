@@ -34,7 +34,7 @@ test('Nutzer kann sich registrieren, einen Post erstellen und diesen auch wieder
     await page.click("button:text('Post')");
     await page.waitForTimeout(200);
     await page.click("text=Account");
-    await page.waitForTimeout(200);
+    await page.waitForLoadState('load');
     await page.click("text=Delete");
     await page.click(".danger");
     await page.waitForTimeout(300);

@@ -7,7 +7,10 @@ module.exports = {
     "setupFilesAfterEnv": ["expect-playwright"],
     testEnvironmentOptions: {
         'jest-playwright': {
-            browsers: ['chromium', 'firefox', 'webkit']
+            launchOptions: {
+                headless: true
+            },
+            browsers: ['chromium', 'firefox']
         },
     }
 }

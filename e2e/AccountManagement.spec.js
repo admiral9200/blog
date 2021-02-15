@@ -14,7 +14,8 @@ test('Nutzer kann sich registrieren und anschließend einen Post erstellen', asy
     await page.goto('https://blog-staging.nailuj.net');
     await page.click("text=Register");
     await page.click("#username");
-    await page.fill("#username", randomUser());
+    let username = randomUser();
+    await page.fill("#username", username);
     await page.click("#email");
     await page.fill("#email", randomMail());
     await page.press("#email", "Tab");
@@ -34,7 +35,8 @@ test('Nutzer kann sich registrieren und anschließend einen Post erstellen', asy
     await page.click("button:text('Post')");
     await page.waitForTimeout(200);
     await page.click("a:text('Post')");
-    await page.click("a:text('Read More')");
-    await expect(page).toHaveText('#title', 'A Post Title');
+    await page.waitForTimeout(500);
+    await page.waitForLoadState('networkidle');
+    await expect(page).toHaveText(".home", username);
 }, 100000)
 
