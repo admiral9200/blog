@@ -84,7 +84,7 @@ jobs:
       uses: SamKirkland/FTP-Deploy-Action@4.0.0
       with:
         server: ftp.nailuj.net
-        username: git
+        username: blog
         password: ${{ secrets.FTP_PASSWORD }}
         server-dir: ./staging/
         exclude: .git* 
