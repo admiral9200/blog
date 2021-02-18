@@ -3,8 +3,11 @@
         <div class="c">
             <h1>{{ username }}</h1>
             <h2>Posts</h2>
-            <p v-if="!posts.length">It's looking rather empty in here...</p>
-            <table v-else class="full">
+            <p v-if="loading">Loading posts...</p>
+            <p v-if="!posts.length && !loading">
+                It's looking rather empty in here...
+            </p>
+            <table v-if="posts.length" class="full">
                 <thead>
                     <tr>
                         <th>Title</th>
@@ -32,7 +35,10 @@
                                 >
                                     Edit</router-link
                                 >
-                                <transition name="delete-transition" mode="out-in">
+                                <transition
+                                    name="delete-transition"
+                                    mode="out-in"
+                                >
                                     <button
                                         v-if="!post.deleteRequested"
                                         class="b"
@@ -71,6 +77,7 @@ export default {
     data() {
         return {
             posts: [],
+            loading: false,
         };
     },
     props: ["username"],
@@ -78,6 +85,7 @@ export default {
         let username = this.isOwnAccount
             ? this.$globals.username
             : this.username;
+        this.loading = true;
         this.$http
             .get(`/api/account/${username}/posts`, {
                 withCredentials: true,
@@ -94,6 +102,9 @@ export default {
                     return post;
                 });
                 this.posts = postsData;
+            })
+            .finally(() => {
+                this.loading = false;
             });
     },
     methods: {
@@ -136,26 +147,29 @@ export default {
     background: #bf616a !important;
 }
 
-.delete-transition-enter-active, .delete-transition-leave-active {
-  transition: all .5s;
+.delete-transition-enter-active,
+.delete-transition-leave-active {
+    transition: all 0.5s;
 }
-.delete-transition-enter, .delete-transition-leave-active {
-  opacity: 0;
+.delete-transition-enter,
+.delete-transition-leave-active {
+    opacity: 0;
 }
 .delete-transition-enter {
-  transform: translateX(31px);
+    transform: translateX(31px);
 }
 /*.delete-transition-leave-active {
   transform: translateX(-31px);
 }*/
 
-
-.table-enter-active, .table-leave-active {
+.table-enter-active,
+.table-leave-active {
     transition: all 1s;
 }
-.table-enter, .table-leave-to {
-  opacity: 0;
-  transform: translateY(30px);
+.table-enter,
+.table-leave-to {
+    opacity: 0;
+    transform: translateX(30px);
 }
 .card {
     transition: height 1s;

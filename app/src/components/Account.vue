@@ -1,12 +1,12 @@
 <template>
   <span v-if="loggedIn" class="acc"
-    >Welcome {{ username }}!<br /><router-link to="/account">Account</router-link>/<a ref="logout"
+    >Welcome {{ username }}!<br /><router-link to="account">Account</router-link>/<a ref="logout"
       @click.prevent="logout"
       >Logout</a
     ></span
   >
   <span v-else class="acc"
-    ><router-link to="/login">Login</router-link>/<router-link to="/register"
+    ><router-link to="login">Login</router-link>/<router-link to="register"
       >Register</router-link
     ></span
   >
