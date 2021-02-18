@@ -38,7 +38,8 @@ test('Nutzer kann sich registrieren, einen Post erstellen und diesen auch wieder
     await page.click("text=Delete");
     await page.waitForTimeout(300);
     await page.click("text=Confirm");
-    await page.waitForTimeout(300);
+    await page.waitForTimeout(500);
     await page.waitForLoadState('networkidle');
+    await page.waitFor
     await expect(page).toHaveText('.card div', 'empty');
 }, 100000)

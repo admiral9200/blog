@@ -33,7 +33,7 @@ test('Nutzer kann sich registrieren und anschließend einen Post erstellen', asy
     await page.press("#content", "Tab");
     await page.fill("#summary", "A Post about the unspoken Rules of Software Deployment");
     await page.click("button:text('Post')");
-    await page.waitForTimeout(300);
+    await page.waitForTimeout(500);
     await page.waitForLoadState('networkidle');
     await page.goto('https://blog-staging.nailuj.net');
     await page.waitForLoadState('networkidle');
