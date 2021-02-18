@@ -32,9 +32,9 @@ test('Nutzer kann sich registrieren, einen Post erstellen und diesen auch wieder
     await page.press("#content", "Tab");
     await page.fill("#summary", "A Post about the unspoken Rules of Software Deployment");
     await page.click("button:text('Post')");
-    await page.waitForTimeout(300);
+    await page.waitForTimeout(500);
     await page.waitForLoadState('networkidle');
-    await page.click("text=Account");
+    await page.goto('https://blog-staging.nailuj.net/#/account', { waitUntil: "domcontentloaded" });
     await page.click("text=Delete");
     await page.waitForTimeout(300);
     await page.click("text=Confirm");
