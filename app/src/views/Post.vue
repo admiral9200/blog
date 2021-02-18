@@ -1,8 +1,9 @@
 <template>
     <div class="post">
+        <p v-if="loading">Loading the post..</p>
         <post v-if="post" class="gimme_space" :post="post" />
         <br>
-        <button v-if="post" class="b primary" @click.prevent="goBack">Go back</button>
+        <button class="b primary" @click.prevent="goBack">Go back</button>
     </div>
 </template>
 
@@ -14,6 +15,7 @@ export default {
     data() {
         return {
             post: undefined,
+            loading: false
         };
     },
     components: {
@@ -21,6 +23,7 @@ export default {
     },
     props: ["id"],
     created() {
+        this.loading = true
         this.$http
             .get(`/api/post/${this.id}`, { withCredentials: true })
             .then((res) => {
@@ -35,7 +38,10 @@ export default {
                     5000
                 );
                 router.back();
-            });
+            })
+            .finally(() => {
+                this.loading = false
+            })
     },
     methods: {
         goBack: function() {
